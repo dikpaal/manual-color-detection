@@ -9,6 +9,7 @@ def image_to_rgb_array(image_path):
     with Image.open(image_path) as img:
         img = img.convert('RGB')
         img_array = np.array(img)
+
     return img_array
 
 def get_top_colors(image_path, top_n=5):
