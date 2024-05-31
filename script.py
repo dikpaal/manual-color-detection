@@ -25,4 +25,4 @@ image_path = 'images/ubcor.png'
 top_colors = get_top_colors(image_path)
 print("Top 5 most appearing colors (in RGB):")
 for color, count in top_colors:
-    print(f"Color: {color}, Count: {count}")``
+    print(f"Color: {color}, Count: {count}")
