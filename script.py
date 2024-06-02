@@ -6,6 +6,7 @@ import numpy as np
 from collections import Counter
 import webcolors
 
+# Converts the image into 3D array of pixels
 def image_to_rgb_array(image_path):
 
     with Image.open(image_path) as img:
@@ -14,6 +15,7 @@ def image_to_rgb_array(image_path):
 
     return img_array
 
+# Classifies the top 5 most appearing pixels
 def get_top_colors(image_path, top_n=5):
     
     rgb_array = image_to_rgb_array(image_path)
@@ -23,6 +25,7 @@ def get_top_colors(image_path, top_n=5):
     
     return top_colors
 
+# Classifies inputted pixel into the nearest color
 def closest_color(requested_color):
     min_colors = {}
     for key, name in webcolors.CSS3_HEX_TO_NAMES.items():
@@ -33,6 +36,7 @@ def closest_color(requested_color):
         min_colors[(rd + gd + bd)] = name
     return min_colors[min(min_colors.keys())]
 
+# Classifies inputted pixel into the nearest color
 def get_color_name(requested_color):
     try:
         color_name = webcolors.rgb_to_name(requested_color)
@@ -40,6 +44,7 @@ def get_color_name(requested_color):
         color_name = closest_color(requested_color)
     return color_name
 
+# Main function
 def classify_top_colors(image_path, top_n=5):
     top_colors = get_top_colors(image_path, top_n)
     classified_colors = [(color, count, get_color_name(color)) for color, count in top_colors]
