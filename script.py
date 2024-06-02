@@ -1,4 +1,5 @@
-# first !pip install pillow
+# !pip3 install pillow
+# !pip3 install webcolors
 
 from PIL import Image
 import numpy as np
@@ -6,25 +7,18 @@ from collections import Counter
 import webcolors
 
 def image_to_rgb_array(image_path):
-    # Open the image file
+
     with Image.open(image_path) as img:
-        # Convert the image to RGB mode
         img = img.convert('RGB')
-        # Convert the image to a NumPy array
         img_array = np.array(img)
+
     return img_array
 
 def get_top_colors(image_path, top_n=5):
-    # Get the 3D array of RGB values
+    
     rgb_array = image_to_rgb_array(image_path)
-    
-    # Reshape the array to a 2D array where each row is a color
     reshaped_array = rgb_array.reshape(-1, 3)
-    
-    # Count the occurrence of each color
     color_counts = Counter(map(tuple, reshaped_array))
-    
-    # Get the top N most common colors
     top_colors = color_counts.most_common(top_n)
     
     return top_colors
